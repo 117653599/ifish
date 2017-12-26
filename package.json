@@ -1,6 +1,6 @@
 {
   "name": "ifish",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a cli example",
   "preferGlobal": true,
   "bin": {
@@ -12,8 +12,7 @@
   },
   "scripts": {
     "test": "npm run lint && npm run e2e",
-    "lint": "eslint test/e2e/test*.js lib bin/* --env mocha",
-    "e2e": "rimraf test/e2e/mock-template-build && mocha test/e2e/test.js --slow 1000"
+    "lint": "eslint test/e2e/test*.js lib bin/* --env mocha"
   },
   "dependencies": {
     "async": "^2.6.0",
