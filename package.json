@@ -6,6 +6,10 @@
   "bin": {
     "ifish": "bin/ifish.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/117653599/ifish.git"
+  },
   "scripts": {
     "test": "npm run lint && npm run e2e",
     "lint": "eslint test/e2e/test*.js lib bin/* --env mocha",
