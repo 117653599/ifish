@@ -1,7 +1,7 @@
-# ifish-cli
+# ifish
 
 ``` bash
-$ npm install -g ifish-cli
+$ npm install -g ifish
 ```
 
 ### Usage
