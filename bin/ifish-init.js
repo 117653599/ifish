@@ -8,44 +8,34 @@ const inquirer = require('inquirer')
 const latestVersion = require('latest-version')
 const ora = require('ora')
 const chalk = require('chalk')
-
 const download = require('../lib/download')
 const generator = require('../lib/generator')
 
-program.usage('<project-name>').parse(process.argv)
-
-let projectName = program.args[0]
+/**
+ * Usage.
+ */
+program
+  .usage('<project-name>')
+  .parse(process.argv)
 
 const list = glob.sync('*')
+const spinner = ora('loading')
+let projectName = program.args[0]
 let rootName = path.basename(process.cwd())
-const spinner = ora('loading');
 let next = undefined
+
 if (list.length) {
   if (list.filter(name => {
     const fileName = path.resolve(process.cwd(), path.join('.', name))
-     const isDir = fs.statSync(fileName).isDirectory()
-     return name.indexOf(projectName) !== -1 && isDir
+    const isDir = fs.statSync(fileName).isDirectory()
+    return name.indexOf(projectName) !== -1 && isDir
     }).length !== 0) {
     console.log(chalk.red(`${projectName}已经存在`))
     return
   }
   next = Promise.resolve(projectName)
-} 
-// else if (rootName === projectName) {
-//   // 基本可以不用管的
-//   next = inquirer.prompt([
-//     {
-//       name: 'buildInCurrent',
-//       message: '当前目录为空，且目录名称和项目名称相同，是否直接在当前目录下创建新项目？',
-//       type: 'confirm',
-//       default: true
-//     }
-//   ]).then(answer => {
-//     return Promise.resolve(answer.buildInCurrent ? '.' : projectName)
-//   })
-// } 
-else {
-    next = Promise.resolve(projectName)
+} else {
+  next = Promise.resolve(projectName)
 }
 
 next && go()
